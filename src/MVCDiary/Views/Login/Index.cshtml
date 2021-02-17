@@ -1,0 +1,40 @@
+﻿@model MVCDiary.Models.UserData
+
+@{
+    ViewData["title"] = "Login";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row text-center" hidden="@(Convert.ToBoolean(Session["isAuthed"]))">
+    <div class="col-xl-8 offset-xl-2">
+        <div class="text-left" style="border-radius: 5px;padding: 20px;">
+            <h1 style="font-family: 'Nanum Gothic Coding', monospace;">로그인</h1>
+            <p style="font-family: 'Nanum Gothic Coding', monospace;">계속하시려면 로그인하십시오.</p>
+
+            <form accept-charset="utf-8" method="post" onsubmit="this.submit(); this.reset(); $('.loader').attr('hidden', false); return false;">
+                <p style="margin-bottom: 3px;font-family: 'Nanum Gothic Coding', monospace;font-size: 14px;">아이디</p>
+                @Html.TextBoxFor(user => user.Name, new { @class = "form-control", @style = "width: 100%;margin-bottom: 10px;" })
+
+                <p style="font-family: 'Nanum Gothic Coding', monospace;font-size: 14px;margin-bottom: 3px;">비밀번호</p>
+                @Html.TextBoxFor(user => user.Password, new { @class = "form-control", @style = "width: 100%;", @type = "password" })
+
+                <div class="text-right mt-4">
+                    <input type="submit" class="btn btn-primary" value="로그인" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center" hidden="@(!Convert.ToBoolean(Session["isAuthed"]))">
+    <div class="col-xl-8 offset-xl-2">
+        <div class="text-left" style="border-radius: 5px;padding: 20px;">
+            <h1 style="font-family: 'Nanum Gothic Coding', monospace;">@ViewBag.WelcomeMessage</h1>
+            <p style="font-family: 'Nanum Gothic Coding', monospace;">@ViewBag.OtherMessage</p>
+            <br />
+            <a class="btn btn-danger" onclick="$('.loader').attr('hidden', false); $.post('api/logout', function() {$.ajax({url: '',context: document.body,success: function(s,x){$(this).html(s);}});});" style="width: 100%">로그아웃</a>
+        </div>
+    </div>
+</div>
+
+<div class="loader loader-default is-active" hidden="hidden"></div>

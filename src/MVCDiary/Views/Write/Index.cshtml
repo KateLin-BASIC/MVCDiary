@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["title"] = "Post";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+    <script src="/Content/ckeditor/ckeditor.js"></script>
+}
+
+<div class="row">
+    <div class="col" style="padding: 15px;">
+        <form accept-charset="utf-8" method="post">
+            <input class="form-control mb-2" name="title" placeholder="제목" />
+            <input class="form-control" name="description" placeholder="설명" />
+            <hr />
+            <textarea name="text" id="postEditor" rows="10" cols="80"></textarea>
+            <script>CKEDITOR.replace('postEditor');</script>
+            <input class="form-control mt-3" name="thumnail" placeholder="섬네일 이미지 링크" />
+            <hr />
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">등록</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["title"] = @ViewBag.Title;
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <h1 style="font-family: 'Nanum Gothic Coding', monospace;">@ViewBag.Title</h1>
+        <p style="font-family: 'Nanum Gothic Coding', monospace;margin-top: -10px;">@ViewBag.Description</p>
+        <p class="text-right" style="font-family: 'Nanum Gothic Coding', monospace;margin-top: -15px;">@ViewBag.Date</p>
+        <hr>
+        @Html.Raw(@ViewBag.Html)
+    </div>
+</div>
